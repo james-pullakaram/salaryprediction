@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard - SalaryAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="nav-logo">
+        SalaryAI
+    </div>
+
+    <a class="logout" href="/logout">
+        Logout
+    </a>
+
+</nav>
+
+
+<div class="dashboard">
+
+    <div class="welcome">
+
+        <h1>Salary Prediction Dashboard</h1>
+
+        <p>
+            Predict an employee's estimated salary using
+            Machine Learning.
+        </p>
+
+    </div>
+
+
+    <div class="prediction-card">
+
+        <div class="icon">💼</div>
+
+        <h2>Employee Salary Prediction</h2>
+
+        <p class="card-description">
+            Enter the employee's years of experience
+            and our ML model will estimate the salary.
+        </p>
+
+
+        <form method="POST">
+
+            <div class="predict-form">
+
+                <div class="experience-field">
+
+                    <label>
+                        Years of Experience
+                    </label>
+
+                    <input
+                        type="number"
+                        name="experience"
+                        step="0.1"
+                        min="0"
+                        placeholder="e.g. 5"
+                        required>
+
+                </div>
+
+                <button
+                    class="predict-btn"
+                    type="submit">
+
+                    Predict Salary
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+        {% if prediction is not none %}
+
+        <div class="result-card">
+
+            <div class="result-label">
+                Estimated Annual Salary
+            </div>
+
+            <div class="salary">
+                ₹{{ "{:,.2f}".format(prediction) }}
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
